@@ -76,6 +76,13 @@ Thumbs.db
 *.sqlite
 *.sqlite3
 
+# Playwright
+playwright-browsers/
+.playwright/
+test-results/
+playwright-report/
+playwright/.cache/
+
 # Logs
 *.log
 logs/
