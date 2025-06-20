@@ -14,6 +14,9 @@ def get_url_info(url):
     return headers, text, soup, title
 
 def id_categories(soup):
+    """
+    Return categories of article
+    """
     cat_div = soup.find("div", id="mw-normal-catlinks")
     categories = []
     if cat_div:
@@ -51,7 +54,8 @@ if __name__ == "__main__":
         CREATE TABLE IF NOT EXISTS articles (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT,
-            categories TEXT
+            categories TEXT,
+            url TEXT
         )
     """)
     conn.commit()
@@ -59,15 +63,31 @@ if __name__ == "__main__":
 
     first_test_url = "https://en.wikipedia.org/wiki/Web_scraping"
     urls = [first_test_url]
-    urls.extend(get_first_article_links(first_test_url))  # <- FIXED
+    urls.extend(get_first_article_links(first_test_url)) 
 
     # Add to database
-    for url in urls:
+    #for url in urls:
+    total_urls_processed = 0
+    while (len(urls) > 0) and (total_urls_processed < 100):
+        total_urls_processed
+        url = urls.pop(0)
+        print(f"Processing URL: {url}")
+        print(f"Total URLs processed: {total_urls_processed}")
+        print(f"URLs remaining: {len(urls)}")
         #  headers, text, soup, title <-- Add to Function Signature 
         _, _, souper, title = get_url_info(url)
         categories = id_categories(souper)
         category_string = ", ".join(categories)
-        cur.execute("INSERT INTO articles (title, categories) VALUES (?, ?)", (title, category_string))
+        try:
+            cur.execute("INSERT INTO articles (title, categories, url) VALUES (?, ?, ?)", (title, category_string, url))
+            urls.extend(get_first_article_links(url))
+        except:
+            continue
+
+
+        
+    
+
 
     conn.commit()
     conn.close()
