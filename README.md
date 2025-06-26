@@ -50,3 +50,8 @@
 
 
 
+pip install python-dotenv
+
+
+### To update requirements.txt
+pip freeze > requirements.txt
