@@ -52,6 +52,17 @@
 
 pip install python-dotenv
 
-
 ### To update requirements.txt
 pip freeze > requirements.txt
+
+### Next time
+Practice with sending a list of different jobs to the Job Match Rater, and store the output in a database.
+* Match Score
+* Job title
+* Date of Job Posting
+* 1 Sentence Description of Job
+
+### Other Oportunities
+* Look into Playwrite more to allow us to scrape more jobs
+* Look into accepting PDF's and transforming them to a formate usable by claude.
+* Generating a customized resume for job postings based on the users orriginal resume.
