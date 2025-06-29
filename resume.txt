@@ -1,0 +1,67 @@
+ALEXANDRA NGUYEN
+San Francisco, CA | alexandra.nguyen@email.com | (555) 123-4567 | github.com/alexnguyen | linkedin.com/in/alexnguyen
+
+OBJECTIVE
+Motivated software engineer with hands-on experience building full-stack applications, seeking a challenging role where I can contribute to impactful projects, grow technically, and collaborate with an innovative engineering team.
+
+EDUCATION
+University of California, Berkeley
+Bachelor of Science in Computer Science
+Graduation: May 2025 | GPA: 3.75
+
+Relevant Coursework: Data Structures, Algorithms, Operating Systems, Databases, Software Engineering, Computer Networks
+
+TECHNICAL SKILLS
+Languages: Python, JavaScript (ES6+), Java, C++, SQL
+Frameworks/Libraries: React, Node.js, Express, Flask, Pandas
+Tools: Git, Docker, PostgreSQL, MongoDB, VS Code, Figma
+Cloud/DevOps: AWS EC2, GitHub Actions, Heroku
+
+PROJECTS
+TaskTrackr – Full-Stack Productivity App
+React, Node.js, Express, MongoDB
+
+Built a Kanban-style task management tool with drag-and-drop functionality and user authentication
+
+Implemented RESTful API and session-based login
+
+Deployed on Heroku with MongoDB Atlas
+
+Campus Maps API – CS Hackathon Winner
+Python, Flask, Google Maps API
+
+Designed an API to optimize student walking routes and locate accessible building entrances
+
+Integrated live mapping data using the Google Maps API
+
+Placed 1st in UC Berkeley Hack for Accessibility 2024
+
+EXPERIENCE
+Software Engineering Intern
+Redwood Robotics, San Mateo, CA — May 2024 – August 2024
+
+Developed a Python-based simulation tool to test robotic arm pathing
+
+Wrote unit tests and integrated error logging, improving debugging speed by 40%
+
+Participated in Agile sprints and code reviews with a cross-functional team
+
+Teaching Assistant – Data Structures
+UC Berkeley EECS Department — January 2024 – May 2024
+
+Led weekly sections for over 30 students
+
+Designed and graded programming assignments in Java
+
+Held office hours and provided mentorship for students struggling with recursion and pointers
+
+LEADERSHIP & EXTRACURRICULARS
+Women in CS at Berkeley — Events Chair
+
+Organized monthly meetups and mentorship events for 150+ members
+
+Raised $3,000 in sponsorships from local tech companies
+
+Hack4Impact — Developer
+
+Built pro-bono software for nonprofits, including an SMS alert system for local shelters

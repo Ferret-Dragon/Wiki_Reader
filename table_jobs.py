@@ -6,6 +6,9 @@ import sqlite3
 import tldextract
 
 
+###  SET DEFAULT RESUME FOR TESTING
+with open("resume.txt", "r", encoding="utf-8") as file:
+    resume = file.read()
 # Load environment variables from the .env file
 load_dotenv()
 
@@ -22,7 +25,15 @@ def get_link_source(url):
     return site_name.capitalize()
     
 
+
 # Generate job table
+## Open database
+## Listing source
+## Job title
+## Description *
+## Url
+## Compatability *
+
 def create_job_table():
     print("Paste the link to the job source: \n")
     # https://richmond.craigslist.org/search/richmond-va/sof?lat=37.551&lon=-77.459&search_distance=25#search=2~thumb~0
@@ -50,7 +61,7 @@ def create_job_table():
     with sync_playwright() as p:
         #### Initialize our Browser
         browser = p.chromium.launch(headless=True)  # Launch headless browser
-
+        context = browser.new_context()
         ### Visit a seed web page
             ### Input -- A website to visit, a configured browser object
             ### Output -- Playwright Page Object
@@ -63,10 +74,22 @@ def create_job_table():
         for data in pageLinks:
             title = get_job_title_from_CL_html(data)
             webAddress = get_web_address_for_link_element(data)
-            print("title ", title)
-            print("web address ", webAddress, "\n")
+            #print("title ", title)
+            #print("web address ", webAddress, "\n")
             
-            cur.execute("INSERT INTO jobs (source, job, description, url, compatability) VALUES (?, ?, ?, ?, ?)", (source, title, "null", webAddress, "null"))
+            # Open the individual job listing
+            job_page = context.new_page()
+            try:
+                job_page.goto(webAddress, timeout=10000)
+                job_page.wait_for_selector("#postingbody", timeout=5000)
+                desc_el = job_page.query_selector("#postingbody")
+                description = desc_el.inner_text().strip() if desc_el else "No description found"
+            except:
+                pass
+            finally:
+                job_page.close()
+            
+            cur.execute("INSERT INTO jobs (source, job, description, url, compatability) VALUES (?, ?, ?, ?, ?)", (source, title, description, webAddress, "null"))
 
         conn.commit()
         conn.close()
