@@ -66,3 +66,17 @@ Practice with sending a list of different jobs to the Job Match Rater, and store
 * Look into Playwrite more to allow us to scrape more jobs
 * Look into accepting PDF's and transforming them to a formate usable by claude.
 * Generating a customized resume for job postings based on the users orriginal resume.
+
+
+
+#### Websites to get job links from
+* Indeed.com --> Cloudflare Blocked us
+* Linkedin.com --> Can Access, but behind Account Wall
+* Monster.com --> Blocked behind 
+* Handshake.com --> Behind Account Wall
+* Glassdoor --> Behind Account Wall
+* AeroTech --> Has Jobs, not great results
+* Other Technical Job Boards
+* Craigslist -- Not great internship postings
+* Stack Overflow -- Looks like we can access in GUI mode
+* L33tCode JObs
