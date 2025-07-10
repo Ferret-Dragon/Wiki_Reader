@@ -18,7 +18,10 @@ if __name__ == "__main__":
                 ### Input -- A website to visit, a configured browser object
                 ### Output -- Playwright Page Object
             visitPage = browser.new_page()
-            visitPage.goto(seed_page, wait_until="networkidle")
+            visitPage.goto(seed_page) #, wait_until="networkidle")
+            
+            prev_height = visitPage.evaluate("document.body.scrollHeight")
+            visitPage.wait_for_function(f'''  () => document.body.scrollHeight > {prev_height}''')
             
             # print(visitPage)
             # print(type(visitPage))
