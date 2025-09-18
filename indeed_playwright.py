@@ -1,42 +1,37 @@
 from playwright.sync_api import sync_playwright
 import sqlite3
 import time
+import random
+from datetime import datetime
 
-# seed_page = "https://www.linkedin.com/jobs/jobs-in-richmond-va?trk=public_profile_guest_nav_menu_jobs&position=1&pageNum=0"
-# seed_page = "https://www.monster.com/"
-# seed_page = "https://jobs.aerotek.com/us/en?icid=jb_aero_n_gen_xx_rtk.cmsrchjb_xx_na_usa_20201002_66610422"
+seed_page = "https://www.indeed.com/"
 
-seed_page = "https://stackoverflowjobs.com/"
-
-if __name__ == "__main__":
-
-    with sync_playwright() as p:
-            #### Initialize our Browser
-            browser = p.chromium.launch(headless=False)  # Launch headless browser
-
-            ### Visit a seed web page
-                ### Input -- A website to visit, a configured browser object
-                ### Output -- Playwright Page Object
-            visitPage = browser.new_page()
-            visitPage.goto(seed_page) #, wait_until="networkidle")
-            
-            prev_height = visitPage.evaluate("document.body.scrollHeight")
-            visitPage.wait_for_function(f'''  () => document.body.scrollHeight > {prev_height}''')
-            
-            # print(visitPage)
-            # print(type(visitPage))
-            # print(dir(visitPage))
-            #print(visitPage.content())
+def random_sleep(a, b):
+    time.sleep(random.uniform(a, b))
     
-            with open("StackOverflowResults.txt", "w+") as file:
-                file.write(visitPage.content())
-            
-            time.sleep(5)
+def main():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False)
+        context= browser.new_context(
+        user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+        )
+        visitPage = context.new_page()
+        visitPage.goto(seed_page)
 
-            browser.close()
+        random_sleep(1, 2)
+        visitPage.wait_for_selector("#text-input-what")
+        visitPage.fill("#text-input-what", "Software Engineer")
 
-            # TODO - Figure out how to read the data without waiting for network idle
-                # There is a point after the webpage finished loading, that we are waiting for
-                # Can we check file Size to determine if content is ready?
-            # TODO - Click on one of the job postings, and see if we can grab information from it.
-            
+        random_sleep(1, 2)
+        visitPage.click('button >> text="Search"')
+        random_sleep(17, 20)
+
+        now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        content = visitPage.content()
+        with open(f"results_folder/indeed_{now}.txt", "w+") as file:
+            file.write(content)
+        
+        time.sleep(5)
+        browser.close()
+
+main()

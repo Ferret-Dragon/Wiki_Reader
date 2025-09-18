@@ -1,0 +1,2 @@
+Create a program that can look for software engineering internship positions that are open in Richmond Virginia on indeed.com.
+Use Python to write this program.  Scrape Indeed for this information and save the output.
