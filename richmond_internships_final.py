@@ -99,8 +99,10 @@ def scrape_indeed_internships():
             print("Filling search form...")
 
             # Wait for and fill the job search box
+            print("Waiting for job search box...")
             what_box = page.wait_for_selector('#text-input-what', timeout=10000)
             if what_box:
+                print("Job search box found...")
                 what_box.click()
                 random_sleep(0.5, 1)
                 what_box.fill('software engineering internship')
@@ -119,11 +121,12 @@ def scrape_indeed_internships():
                 random_sleep(1, 2)
 
             # Click search button
+            
             search_button = page.query_selector('button[type="submit"]')
             if search_button:
                 search_button.click()
                 print("Search submitted, waiting for results...")
-                page.wait_for_load_state('networkidle', timeout=30000)
+                page.wait_for_load_state('domcontentloaded', timeout=30000)
                 random_sleep(3, 5)
 
             # Look for job results with multiple fallback selectors
