@@ -32,8 +32,11 @@ def scrape_with_direct_url():
             page.goto(search_url, timeout=60000)
 
             # Wait and check what we got
-            page.wait_for_load_state('networkidle', timeout=30000)
-            time.sleep(5)
+            try:
+                page.wait_for_load_state('domcontentloaded', timeout=15000)
+            except:
+                print("Timeout waiting for page load, continuing anyway...")
+            time.sleep(3)
 
             # Save the page for inspection
             with open('direct_search_result.html', 'w', encoding='utf-8') as f:
